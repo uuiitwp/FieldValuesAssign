@@ -96,7 +96,7 @@ namespace FieldValuesAssign
                 l.Location = new Point(i * ((this.Width - 10) / listBoxCount) + 10, l.Location.Y);
                 var lb = listBoxs[i];
                 lb.Location = new Point(i * ((this.Width - 10) / listBoxCount) + 10, lb.Location.Y);
-                lb.Width = (this.Width - 40 - listBoxCount * 20) / listBoxCount;
+                lb.Width = (this.Width - 20 - listBoxCount * 20) / listBoxCount;
             }
         }
 
@@ -221,6 +221,10 @@ namespace FieldValuesAssign
 
         private void button2_Click(object sender, EventArgs e)
         {
+            if (this.textBox1.Text == "uuiitwp")
+            {
+                MessageBox.Show("作者:uuiitwp\r\nTEL:15651785611\r\nEMAIL:uuiitwp@163.com");
+            }
             IEnumerable<LinqToExcel.Row> q = from d in this.eh.data
                                              where d.Any((Cell x) => x.ToString().Contains(this.textBox1.Text))
                                              select d;
@@ -383,29 +387,29 @@ namespace FieldValuesAssign
                             try
                             {
                                 g.Execute(cf, null);
-                                TextBox textBox = this.textBox2;
-                                textBox.Text += string.Format("完成对图层{0}中选中要素字段{1}进行赋值,表达式类型为{2},表达式为:{3}\r\n\r\n",
+                                this.textBox2.AppendText(string.Format("完成对图层{0}中选中要素字段{1}进行赋值,表达式类型为{2},表达式为:{3}\r\n",
                                 lyr2.Name,
                                 e5,
                                 cf.expression_type,
-                                cf.expression
-                            );
+                                cf.expression));
+                                this.textBox2.ScrollToCaret();
+                                this.textBox2.Refresh();
                             }
                             catch
                             {
-                                TextBox textBox = this.textBox2;
                                 var em = string.Empty;
                                 for (int i = 0; i < g.MessageCount; i++)
                                 {
                                     em += g.GetMessage(i) + "\r\n";
                                 }
-                                textBox.Text += string.Format("对图层{0}中选中要素字段{1}进行赋值时发生错误,表达式类型为{2},表达式为:{3}\r\n错误信息为:{4}\r\n",
+                                this.textBox2.AppendText(string.Format("对图层{0}中选中要素字段{1}进行赋值时发生错误,表达式类型为{2},表达式为:{3}\r\n错误信息为:{4}\r\n",
                                 lyr2.Name,
                                 e5,
                                 cf.expression_type,
                                 cf.expression,
-                                em
-                            );
+                                em));
+                                this.textBox2.ScrollToCaret();
+                                this.textBox2.Refresh();
                                 if (!checkBox1.Checked)
                                 {
                                     MessageBox.Show("赋值发生错误,查看文本框中记录");
@@ -420,12 +424,14 @@ namespace FieldValuesAssign
                             try
                             {
                                 g.Execute(cf, null);
-                                this.textBox2.Text += string.Format("完成对图层{0}中选中要素字段{1}进行赋值,表达式类型为{2},表达式为:{3}\r\n\r\n",
+                                this.textBox2.AppendText(string.Format("完成对图层{0}中选中要素字段{1}进行赋值,表达式类型为{2},表达式为:{3}\r\n",
                                 lyr2.Name,
                                 e5,
                                 cf.expression_type,
                                 cf.expression
-                            );
+                            ));
+                                this.textBox2.ScrollToCaret();
+                                this.textBox2.Refresh();
                             }
                             catch
                             {
@@ -434,13 +440,15 @@ namespace FieldValuesAssign
                                 {
                                     em += g.GetMessage(i) + "\r\n";
                                 }
-                                this.textBox2.Text += string.Format("对图层{0}中选中要素字段{1}进行赋值时发生错误,表达式类型为{2},表达式为:{3}\r\n错误信息为:{4}\r\n",
+                                this.textBox2.AppendText(string.Format("对图层{0}中选中要素字段{1}进行赋值时发生错误,表达式类型为{2},表达式为:{3}\r\n错误信息为:{4}\r\n",
                                 lyr2.Name,
                                 e5,
                                 cf.expression_type,
                                 cf.expression,
                                 em
-                            );
+                            ));
+                                this.textBox2.ScrollToCaret();
+                                this.textBox2.Refresh();
                                 if (!checkBox1.Checked)
                                 {
                                     MessageBox.Show("赋值发生错误,查看文本框中记录");
@@ -452,8 +460,17 @@ namespace FieldValuesAssign
                     }
                 }
             }
-            textBox2.Text += "全部完成";
+            textBox2.AppendText("全部完成");
+            this.textBox2.ScrollToCaret();
             this.textBox2.Refresh();
+        }
+
+        private void kd(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                button2_Click(null, null);
+            }
         }
     }
 
