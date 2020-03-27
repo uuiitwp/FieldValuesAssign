@@ -1,0 +1,20 @@
+﻿<ESRI.Configuration xmlns="http://schemas.esri.com/Desktop/AddIns" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <Name>FieldValuesAssign</Name>
+  <AddInID>{7fc18121-de61-4f5f-b115-c67e5776f24f}</AddInID>
+  <Description>为Features中某些字段指定一个现有的值。</Description>
+  <Version>1.0</Version>
+  <Image>Images\FieldValuesAssign_1.png</Image>
+  <Author>uuiitwp</Author>
+  <Company></Company>
+  <Date>2020/3/27</Date>
+  <Targets>
+    <Target name="Desktop" version="10.2" />
+  </Targets>
+  <AddIn language="CLR" library="FieldValuesAssign.dll" namespace="FieldValuesAssign">
+    <ArcMap>
+      <Commands>
+        <Button id="FieldValuesAssign_FieldValuesAssign" class="FieldValuesAssign" message="为Features中某些字段指定一个现有的值。" caption="FieldValuesAssign" tip="为Features中某些字段指定一个现有的值。" category="FieldValuesAssign" image="Images\FieldValuesAssign.png" />
+      </Commands>
+    </ArcMap>
+  </AddIn>
+</ESRI.Configuration>
