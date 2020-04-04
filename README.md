@@ -12,3 +12,7 @@
 ![](/READMEPIC/p3.png)
 
 在调查类的测绘项目也许会用到吧
+
+已经编译好binary/FieldValuesAssign.esriAddIn
+
+如果不是ArcGis10.2的版本需要自己编译一下
