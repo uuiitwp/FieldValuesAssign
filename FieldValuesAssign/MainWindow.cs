@@ -16,11 +16,6 @@ namespace FieldValuesAssign
         public MainWindow()
         {
             InitializeComponent();
-
-            textBox2.Location = new Point(20, 160);
-            textBox2.Multiline = true;
-            textBox2.ReadOnly = true;
-            textBox2.ScrollBars = ScrollBars.Both;
             eh = new ExcelHelper();
             int listBoxCount = eh.getListBoxCount();
             KeyValuePair<int, string>[] fieldNames = eh.getFieldNames().ToArray<KeyValuePair<int, string>>();
@@ -88,7 +83,6 @@ namespace FieldValuesAssign
 
         private void resize(object sender, EventArgs e)
         {
-            textBox2.Size = new Size(base.Size.Width - 50, base.Size.Height - 240);
             textBox1.Size = new Size(base.Size.Width - 150, textBox1.Size.Height);
             int listBoxCount = listBoxs.Count;
             for (int i = 0; i < listBoxCount; i++)
@@ -98,6 +92,7 @@ namespace FieldValuesAssign
                 ListBox lb = listBoxs[i];
                 lb.Location = new Point(i * ((Width - 10) / listBoxCount) + 10, lb.Location.Y);
                 lb.Width = (Width - 20 - listBoxCount * 20) / listBoxCount;
+                lb.Height = Height - 200;
             }
         }
 
